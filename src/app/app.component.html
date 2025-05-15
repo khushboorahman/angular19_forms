@@ -2,25 +2,25 @@
 <h1 class="text-center fw-bold">Angular Forms</h1>
   <div class="form-container p-5 mt-5 mb-5">
     <h2 class="text-center">Reactive Form</h2>
-    <form class="row g-3">
+    <form class="row g-3" [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
       <div class="col-sm-12">
         <label for="fullName">Full Name</label>
-        <input type="text" class="form-control" name="fullName">
+        <input type="text" formControlName="FullName" class="form-control" name="fullName">
       </div>
 
       <div class="col-sm-12">
         <label for="contactNum">Contact Number</label>
-        <input type="text" class="form-control" name="contactNum">
+        <input type="text" formControlName="ContactNum" class="form-control" minlength="10" maxlength="10" name="contactNum">
       </div>
 
       <div class="col-sm-12">
         <label for="email">Email</label>
-        <input type="email" class="form-control" name="email">
+        <input type="email" formControlName="Email" class="form-control" name="email">
       </div>
 
       <div class="col-sm-12">
         <label for="address">Address</label>
-        <textarea name="address" id="addr" class="form-control"></textarea>
+        <textarea name="address" id="addr" rows="4" formControlName="Address" class="form-control"></textarea>
       </div>
 
       <div class="col-sm-12">
