@@ -1,5 +1,5 @@
 <div class="container">
-<h1 class="text-center fw-bold">Angular Forms</h1>
+  <h1 class="text-center fw-bold">Angular Forms</h1>
   <div class="form-container p-5 mt-5 mb-5">
     <h2 class="text-center">Reactive Form</h2>
     <form class="row g-3" [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
@@ -10,7 +10,8 @@
 
       <div class="col-sm-12">
         <label for="contactNum">Contact Number</label>
-        <input type="text" formControlName="ContactNum" class="form-control" minlength="10" maxlength="10" name="contactNum">
+        <input type="text" formControlName="ContactNum" class="form-control" minlength="10" maxlength="10"
+          name="contactNum">
       </div>
 
       <div class="col-sm-12">
@@ -24,10 +25,10 @@
       </div>
 
       <div class="col-sm-12">
-         <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </form>
   </div>
 </div>
 
-<router-outlet />
+<router-outlet></router-outlet>
