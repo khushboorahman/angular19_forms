@@ -9,3 +9,8 @@
 button {
     float: right;
 }
+@media (max-width: 768px) {
+    .form-container {
+        width: 100%;
+    }
+}
