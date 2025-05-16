@@ -80,17 +80,25 @@
               Password is required.
             </div>
             <div *ngIf="pwd.errors['minlength']">
-              User name must be at least 8 characters.
+              Password must be at least 8 characters.
             </div>
             <div *ngIf="pwd.errors['maxlength']">
-              User name must be at most 15 characters.
+              Password must not exceed 15 characters.
             </div>
           </div>
         </div>
 
         <div class="col-sm-12">
           <label for="">Confirm Password</label>
-          <input type="password" class="form-control" name="confirmPwd" [(ngModel)]="empForm.confirmPwd" required #confirmPwd="ngModel">
+          <input type="password" class="form-control" name="confirmPwd" [(ngModel)]="empForm.confirmPwd" required #confirmPwd="ngModel" [ngClass]="{ 'is-invalid': form.submitted && confirmPwd.errors}">
+          <div *ngIf="form.submitted && confirmPwd.errors" class="invalid-feedback">
+            <div *ngIf="confirmPwd.errors['required']">
+              Confirm password is required.
+            </div>
+            <div *ngIf="confirmPwd.errors['match']">
+              Confirm password does not match.
+            </div>
+          </div>
         </div>
 
         <div class="col-sm-12">
