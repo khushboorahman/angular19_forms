@@ -1,33 +1,105 @@
-<div class="container">
+<div class="container" *ngIf="isReactiveForm">
   <h1 class="text-center fw-bold">Angular Forms</h1>
+  <button type="button" class="btn btn-info" (click)="onTDForm()">Template Driven Form</button>
   <div class="form-container p-5 mt-5 mb-5">
     <h2 class="text-center">Reactive Form</h2>
-    <form class="row g-3" [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
-      <div class="col-sm-12">
-        <label for="fullName">Full Name</label>
-        <input type="text" formControlName="FullName" class="form-control" name="fullName">
-      </div>
+    <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+      <div class="row g-3">
 
-      <div class="col-sm-12">
-        <label for="contactNum">Contact Number</label>
-        <input type="text" formControlName="ContactNum" class="form-control" minlength="10" maxlength="10"
-          name="contactNum">
-      </div>
+        <div class="col-sm-12">
+          <label for="fullName">Full Name</label>
+          <input type="text" formControlName="FullName" class="form-control" name="fullName">
+        </div>
 
-      <div class="col-sm-12">
-        <label for="email">Email</label>
-        <input type="email" formControlName="Email" class="form-control" name="email">
-      </div>
+        <div class="col-sm-12">
+          <label for="contactNum">Contact Number</label>
+          <input type="text" formControlName="ContactNum" class="form-control" minlength="10" maxlength="10"
+            name="contactNum">
+        </div>
 
-      <div class="col-sm-12">
-        <label for="address">Address</label>
-        <textarea name="address" id="addr" rows="4" formControlName="Address" class="form-control"></textarea>
-      </div>
+        <div class="col-sm-12">
+          <label for="email">Email</label>
+          <input type="email" formControlName="Email" class="form-control" name="email">
+        </div>
 
-      <div class="col-sm-12">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="col-sm-12">
+          <label for="address">Address</label>
+          <textarea name="address" id="addr" rows="4" formControlName="Address" class="form-control"></textarea>
+        </div>
+
+        <div class="col-sm-12">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
       </div>
     </form>
+  </div>
+</div>
+
+<!-- Template Driven Form -->
+<div class="container" *ngIf="isTDForm">
+  <h1 class="text-center fw-bold">Angular Forms</h1>
+  <button type="button" class="btn btn-info" (click)="showReactiveForm()">Reactive Form</button>
+  <div class="form-container p-5 mt-5 mb-5">
+    <h2 class="text-center">Template Driven Form</h2>
+
+    <form #form="ngForm" (ngSubmit)="form.form.valid && onTDSubmit()">
+      <div class="row g-3">
+
+        <div class="col-sm-12">
+          <label for="">Full Name</label>
+          <input type="text" class="form-control" name="fullName" [(ngModel)]="empForm.fullName">
+        </div>
+
+        <div class="col-sm-12">
+          <label for="">Email</label>
+          <input type="text" class="form-control" name="email" [(ngModel)]="empForm.email">
+        </div>
+
+        <div class="col-sm-12">
+          <label for="">User Name</label>
+          <input type="text" class="form-control" minlength="4" maxlength="20" name="userName" [(ngModel)]="empForm.userName" required #userName="ngModel" [ngClass]="{ 'is-invalid': form.submitted && userName.errors }">
+          <div *ngIf="form.submitted && userName.errors" class="invalid-feedback">
+            <div *ngIf="userName.errors['required']">
+              User name is required.
+            </div>
+            <div *ngIf="userName.errors['minlength']">
+              User name must be at least 4 characters.
+            </div>
+            <div *ngIf="userName.errors['maxlength']">
+              User name must be at most 20 characters.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <label for="">Password</label>
+          <input type="password" class="form-control" minlength="8" maxlength="15" name="pwd" [(ngModel)]="empForm.pwd" required #pwd="ngModel" [ngClass]="{ 'is-invalid': form.submitted && pwd.errors}">
+          <div *ngIf="form.submitted && pwd.errors" class="invalid-feedback">
+            <div *ngIf="pwd.errors['required']">
+              Password is required.
+            </div>
+            <div *ngIf="pwd.errors['minlength']">
+              User name must be at least 8 characters.
+            </div>
+            <div *ngIf="pwd.errors['maxlength']">
+              User name must be at most 15 characters.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <label for="">Confirm Password</label>
+          <input type="password" class="form-control" name="confirmPwd" [(ngModel)]="empForm.confirmPwd" required #confirmPwd="ngModel">
+        </div>
+
+        <div class="col-sm-12">
+          <button type="submit" class="btn btn-primary ms-3">Submit</button>
+          <button type="reset" class="btn btn-warning">Reset</button>
+        </div>
+      </div>
+    </form>
+
   </div>
 </div>
 
